@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e  # 在出现错误时停止脚本
-# set -x  # 打印执行的命令
+# set -x  # 打印执行的命令（可选）
 
 # 定义 dotfiles 目录
 DOTFILES_DIR="$HOME/dotfiles"
@@ -9,6 +9,30 @@ DOTFILES_DIR="$HOME/dotfiles"
 if [ ! -d "$DOTFILES_DIR" ]; then
   echo "Dotfiles directory not found: $DOTFILES_DIR"
   exit 1
+fi
+
+
+###################################
+# 安装 build-essential
+###################################
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  echo "Installing build-essential..."
+  sudo apt update && sudo apt install -y build-essential
+else
+  echo "build-essential is typically not needed on macOS."
+fi
+
+
+###################################
+# 安装 Python 3
+###################################
+
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  echo "Installing Python 3..."
+  sudo apt install -y python3
+else
+  echo "Python 3 can be installed via Homebrew: brew install python"
 fi
 
 
@@ -47,12 +71,12 @@ echo "-------------------------------------------"
 
 # 安装 oh-my-zsh
 install_ohmyzsh() {
-    if [ ! -d "$HOME/.oh-my-zsh" ]; then
-      echo "Installing oh-my-zsh..."
-      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    else
-      echo "oh-my-zsh is already installed."
-    fi
+  if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo "Installing oh-my-zsh..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  else
+    echo "oh-my-zsh is already installed."
+  fi
 }
 
 # 安装 Powerlevel10k 主题
@@ -100,6 +124,36 @@ fi
 echo "-------------------------------------------"
 
 
+#################################################
+# autojump
+#################################################
+
+install_autojump() {
+  if ! command -v autojump &> /dev/null; then
+    echo "Installing autojump..."
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+      git clone https://github.com/wting/autojump.git /tmp/autojump
+      cd /tmp/autojump
+      chmod +x install.py  # 确保脚本可执行
+      ./install.py
+      cd -
+      rm -rf /tmp/autojump  # 清理临时目录
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+      brew install autojump
+    else
+      echo "Please install 'autojump' manually."
+      exit 1
+    fi
+  else
+    echo "autojump is already installed."
+  fi
+}
+
+install_autojump
+
+echo "-------------------------------------------"
+
+
 ##################################################
 # Git 
 ##################################################
@@ -116,35 +170,6 @@ echo "-------------------------------------------"
 
 # 链接 Vim 配置
 stow_module "vim"
-
-echo "-------------------------------------------"
-
-
-#################################################
-# autojump
-#################################################
-
-install_autojump() {
-  if ! command -v autojump &> /dev/null; then
-    echo "Installing autojump..."
-    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-      git clone https://github.com/wting/autojump.git /tmp/autojump
-      cd /tmp/autojump
-      ./install.py
-      cd -
-      rm -rf /tmp/autojump
-    elif [[ "$OSTYPE" == "darwin"* ]]; then
-      brew install autojump
-    else
-      echo "Please install 'autojump' manually."
-      exit 1
-    fi
-  else
-    echo "autojump is already installed."
-  fi
-}
-
-install_autojump
 
 echo "-------------------------------------------"
 
