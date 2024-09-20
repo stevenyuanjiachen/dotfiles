@@ -128,6 +128,7 @@ export PATH="$HOME/tools/anaconda3/bin:$PATH"
 autoload -U compinit && compinit -u
 
 # some alias...
+alias aptup='sudo apt update && sudo apt upgrade'
 alias gss='git status -s'
 alias gs='git status'
 alias chae='code . && exit'
