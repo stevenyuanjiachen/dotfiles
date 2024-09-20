@@ -120,6 +120,35 @@ stow_module "vim"
 echo "-------------------------------------------"
 
 
+#################################################
+# autojump
+#################################################
+
+install_autojump() {
+  if ! command -v autojump &> /dev/null; then
+    echo "Installing autojump..."
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+      git clone https://github.com/wting/autojump.git /tmp/autojump
+      cd /tmp/autojump
+      ./install.py
+      cd -
+      rm -rf /tmp/autojump
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+      brew install autojump
+    else
+      echo "Please install 'autojump' manually."
+      exit 1
+    fi
+  else
+    echo "autojump is already installed."
+  fi
+}
+
+install_autojump
+
+echo "-------------------------------------------"
+
+
 # 结束
 echo "Dotfiles configuration completed successfully!"
 
