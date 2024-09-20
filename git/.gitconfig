@@ -1,0 +1,7 @@
+[user]
+    name = steven
+    email = 1085320540@qq.com
+[core]
+	editor = vim
+[init]
+	defaultBranch = main
