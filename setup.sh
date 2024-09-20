@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -e  # 在出现错误时停止脚本
-set -x  # 打印执行的命令
+# set -x  # 打印执行的命令
 
-# 定义 dotfiles 目录，替换成你的 dotfiles 仓库路径
+# 定义 dotfiles 目录
 DOTFILES_DIR="$HOME/dotfiles"
 
 # 确保 dotfiles 目录存在
@@ -31,18 +31,29 @@ else
   echo "stow is already installed."
 fi
 
+# used to stow modules
+stow_module() {
+  local module="$1"
+  echo "Stowing $module..."
+  stow -d "$DOTFILES_DIR" -t "$HOME" "$module"
+}
+
+echo "-------------------------------------------"
+
 
 ##################################################
 # zsh
 ##################################################
 
 # 安装 oh-my-zsh
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  echo "Installing oh-my-zsh..."
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-else
-  echo "oh-my-zsh is already installed."
-fi
+install_ohmyzsh() {
+    if [ ! -d "$HOME/.oh-my-zsh" ]; then
+      echo "Installing oh-my-zsh..."
+      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    else
+      echo "oh-my-zsh is already installed."
+    fi
+}
 
 # 安装 Powerlevel10k 主题
 install_p10k() {
@@ -74,39 +85,39 @@ install_zsh_plugins() {
   fi
 }
 
-
-##################################################
-# 使用 stow 链接 dotfiles 中的各个模块
-##################################################
-
-stow_module() {
-  local module="$1"
-  echo "Stowing $module..."
-  stow -d "$DOTFILES_DIR" -t "$HOME" "$module"
-}
-
 # 链接 zsh 配置并安装插件
+install_ohmyzsh
 stow_module "zsh"
 install_zsh_plugins
-
-# 安装 Powerlevel10k 主题
 install_p10k
-
-# 链接 Git 配置
-stow_module "git"  # 确保 git 模块已在 dotfiles 中
-
-# 链接 nvim 配置
-stow_module "nvim"
-
-# 链接 tmux 配置
-stow_module "tmux"
-
 
 # 确保 zsh 是默认 shell
 if [ "$SHELL" != "$(command -v zsh)" ]; then
   echo "Changing default shell to zsh..."
   chsh -s "$(command -v zsh)"
 fi
+
+echo "-------------------------------------------"
+
+
+##################################################
+# Git 
+##################################################
+
+# 链接 Git 配置
+stow_module "git"  
+
+echo "-------------------------------------------"
+
+
+#################################################
+# Vim
+#################################################
+
+# 链接 Vim 配置
+stow_module "vim"
+
+echo "-------------------------------------------"
 
 
 # 结束
