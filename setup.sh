@@ -12,28 +12,16 @@ if [ ! -d "$DOTFILES_DIR" ]; then
 fi
 
 
-###################################
-# 安装 build-essential
-###################################
-
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  echo "Installing build-essential..."
-  sudo apt update && sudo apt install -y build-essential
-else
-  echo "build-essential is typically not needed on macOS."
-fi
-
 
 ###################################
-# 安装 Python 3
+# 安装依赖
 ###################################
 
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  echo "Installing Python 3..."
-  sudo apt install -y python3
-else
-  echo "Python 3 can be installed via Homebrew: brew install python"
-fi
+echo "Installing dependencies..."
+chmod +x ./install_dependencies.sh
+./install_dependencies.sh
+
+cd "$HOME/dotfiles"
 
 
 ###################################
@@ -63,6 +51,7 @@ stow_module() {
 }
 
 echo "-------------------------------------------"
+
 
 
 ##################################################
@@ -124,6 +113,7 @@ fi
 echo "-------------------------------------------"
 
 
+
 #################################################
 # autojump
 #################################################
@@ -154,6 +144,7 @@ install_autojump
 echo "-------------------------------------------"
 
 
+
 ##################################################
 # Git 
 ##################################################
@@ -164,6 +155,7 @@ stow_module "git"
 echo "-------------------------------------------"
 
 
+
 #################################################
 # Vim
 #################################################
@@ -172,6 +164,28 @@ echo "-------------------------------------------"
 stow_module "vim"
 
 echo "-------------------------------------------"
+
+
+
+#################################################
+# Neovim
+#################################################
+
+# 检查并调用 Neovim 安装脚本
+if ! command -v nvim &> /dev/null; then
+    echo "Neovim is not installed. Running install_nvim.sh..."
+    chmod +x ./install_nvim.sh
+    ./install_nvim.sh
+else
+  echo "Neovim is already installed."
+fi
+
+# 链接 Neovim 配置
+cd "$HOME/dotfiles"
+stow_module "nvim"
+
+echo "-------------------------------------------"
+
 
 
 # 结束
