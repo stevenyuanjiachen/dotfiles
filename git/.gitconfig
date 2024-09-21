@@ -2,7 +2,7 @@
     name = steven
     email = 1085320540@qq.com
 [core]
-    editor = vim
+    editor = nvim
 [init]
     defaultBranch = main
 [credential]
