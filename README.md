@@ -22,6 +22,8 @@ My personal configuration files. They are designed for a ZSH + TMUX + NEOVIM sta
     - install neovim
     - link dotfiles using `stow`
 
-still waiting for accomplish...
-    - nvim's Autocompletion & Snippets
-    - termux not beginning ƪ(˘⌣˘)ʃ
+Still waiting for accomplish...
+
+- nvim's Autocompletion & Snippets
+
+- termux not beginning ƪ(˘⌣˘)ʃ
