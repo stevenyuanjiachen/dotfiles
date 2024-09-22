@@ -20,7 +20,13 @@ return {
             require("neo-tree.command").execute({ action = "close" })
           end
         },
-      }
+      },
+      -- Show the hidden file
+      filesystem = {
+        filtered_items = {
+          hide_dotfiles = false,  -- 设置为 false 以显示隐藏文件
+        },
+      },
     })
 
     -- keymap
