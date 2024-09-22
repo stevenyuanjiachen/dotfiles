@@ -37,12 +37,20 @@ return {
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
         }),
-        sources = cmp.config.sources({
+        sources = cmp.config.sources(
+        {
+          { name = "nvim_lsp" },
           { name = "luasnip" }, -- For luasnip users.
-        }, {
-          { name = "buffer" },
+        }, 
+        {
+            { name = "buffer" },
         }),
       })
     end,
+  },
+
+  -- the package used to communiacte between the LSP and cmp engine
+  {
+    "hrsh7th/cmp-nvim-lsp"
   },
 }
