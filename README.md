@@ -21,3 +21,7 @@ My personal configuration files. They are designed for a ZSH + TMUX + NEOVIM sta
     - [powerlevel10k](https://github.com/romkatv/powerlevel10k) - ZSH prompt
     - install neovim
     - link dotfiles using `stow`
+
+still waiting for accomplish...
+    - nvim's Autocompletion & Snippets
+    - termux not beginning ƪ(˘⌣˘)ʃ
