@@ -1,12 +1,28 @@
 #!/usr/bin/env bash
 set -e  # 在出现错误时停止脚本
 
+# nvim 依赖 gettext
+if ! command -v gettext &> /dev/null; then
+    echo "Installing gettext..."
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        sudo apt update && sudo apt install -y gettext
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        brew install gettext
+    else
+        echo "Please install gettext manually for your system."
+        exit 1
+    fi
+    echo "gettext installed successfully!"
+else
+    echo "gettext is already installed."
+fi
+
 # 检查 Neovim 是否已安装
 if command -v nvim &> /dev/null; then
     echo "Neovim is already installed."
 else
     # 设置 Neovim 版本
-    NEOVIM_VERSION="v0.11.0"  # 你可以根据需要修改版本号
+    NEOVIM_VERSION="v0.10.1"  # 你可以根据需要修改版本号
 
     # 下载 Neovim 源代码
     echo "Downloading Neovim..."

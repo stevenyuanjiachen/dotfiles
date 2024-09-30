@@ -58,6 +58,14 @@ echo "-------------------------------------------"
 # zsh
 ##################################################
 
+# 检查并安装 Zsh（如果未安装）
+if ! command -v zsh &> /dev/null; then
+  echo "Zsh is not installed. Installing Zsh..."
+  sudo apt update && sudo apt install -y zsh
+else
+  echo "Zsh is already installed."
+fi
+
 # 安装 oh-my-zsh
 install_ohmyzsh() {
   if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -100,6 +108,7 @@ install_zsh_plugins() {
 
 # 链接 zsh 配置并安装插件
 install_ohmyzsh
+rm ~/.zshrc
 stow_module "zsh"
 install_zsh_plugins
 install_p10k
