@@ -137,5 +137,3 @@ alias cbuild='cmake -B build && cmake --build build'
 # color sets of the ls
 export LS_COLORS='ow=01;30;42'
 
-# To customize prompt, run `p10k configure` or edit ~/dotfiles/zsh/.p10k.zsh.
-[[ ! -f ~/dotfiles/zsh/.p10k.zsh ]] || source ~/dotfiles/zsh/.p10k.zsh
