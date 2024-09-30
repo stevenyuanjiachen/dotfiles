@@ -104,6 +104,13 @@ install_zsh_plugins() {
   else
     echo "zsh-autosuggestions is already installed."
   fi
+
+   # 安装 zsh-vi-mode
+  if [ ! -d "$PLUGINS_DIR/zsh-vi-mode" ]; then
+    git clone https://github.com/jeffreytse/zsh-vi-mode.git "$PLUGINS_DIR/zsh-vi-mode"
+  else
+    echo "zsh-vi-mode is already installed."
+  fi
 }
 
 # 链接 zsh 配置并安装插件
