@@ -116,6 +116,9 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+if [[ -f ~/.aliases ]]; then
+  source ~/.aliases
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -126,13 +129,6 @@ export PATH="$HOME/tools/anaconda3/bin:$PATH"
 # autojump
 [[ -s /home/steven/.autojump/etc/profile.d/autojump.sh ]] && source /home/steven/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
-
-# some alias...
-alias aptup='sudo apt update && sudo apt upgrade'
-alias gss='git status -s'
-alias gs='git status'
-alias chae='code . && exit'
-alias cbuild='cmake -B build && cmake --build build'
 
 # color sets of the ls
 export LS_COLORS='ow=01;30;42'

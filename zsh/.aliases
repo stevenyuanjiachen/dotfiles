@@ -1,0 +1,5 @@
+alias aptup='sudo apt update && sudo apt upgrade'
+alias gss='git status -s'
+alias gs='git status'
+alias chae='code . && exit'
+alias cbuild='cmake -B build && cmake --build build'
