@@ -1,5 +1,15 @@
+# apt
 alias aptup='sudo apt update && sudo apt upgrade'
+
+# Git
 alias gss='git status -s'
 alias gs='git status'
+
+# Vscode
 alias chae='code . && exit'
+
+# CMake
 alias cbuild='cmake -B build && cmake --build build'
+
+# SSH
+alias mysev='stserver@49.235.111.34'
