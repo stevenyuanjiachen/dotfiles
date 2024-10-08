@@ -12,4 +12,7 @@ alias chae='code . && exit'
 alias cbuild='cmake -B build && cmake --build build'
 
 # SSH
-alias mysev='stserver@49.235.111.34'
+alias myserver='stserver@49.235.111.34'
+
+# clash
+alias clash_on='sudo bash ~/tools/clash-for-linux/start.sh'
