@@ -127,7 +127,7 @@ fi
 export PATH="$HOME/tools/anaconda3/bin:$PATH"
 
 # autojump
-[[ -s /home/steven/.autojump/etc/profile.d/autojump.sh ]] && source /home/steven/.autojump/etc/profile.d/autojump.sh
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
 
 # color sets of the ls
@@ -137,14 +137,14 @@ export LS_COLORS='ow=01;30;42'
 # conda
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/steven/tools/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$("$HOME/tools/anaconda3/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/steven/tools/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/steven/tools/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/tools/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/tools/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/steven/tools/anaconda3/bin:$PATH"
+        export PATH="$HOME/tools/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
