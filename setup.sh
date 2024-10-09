@@ -210,6 +210,9 @@ echo "-------------------------------------------"
 
 # 链接 Tmux 配置
 stow_module "tmux"
+rm -rf "$HOME/.tmux"
+mkdir -p "$HOME/.tmux/plugins"
+git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 
 echo "-------------------------------------------"
 
