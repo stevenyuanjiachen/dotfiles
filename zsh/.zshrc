@@ -123,18 +123,20 @@ export LS_COLORS='ow=01;30;42'
 # conda
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$("$HOME/tools/anaconda3/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
+if command -v conda &> /dev/null; then
+  __conda_setup="$("$HOME/tools/anaconda3/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
     eval "$__conda_setup"
-else
+  else
     if [ -f "$HOME/tools/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/tools/anaconda3/etc/profile.d/conda.sh"
+      . "$HOME/tools/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="$HOME/tools/anaconda3/bin:$PATH"
+      export PATH="$HOME/tools/anaconda3/bin:$PATH"
     fi
+  fi
+  unset __conda_setup
+  # <<< conda initialize <<<
 fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 # ssh
 if [[ "$USER" != "stserver" ]]; then
