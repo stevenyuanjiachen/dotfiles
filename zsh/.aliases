@@ -16,3 +16,8 @@ myserver='stserver@49.235.111.34'
 
 # clash
 alias clash_on='sudo bash ~/tools/clash-for-linux/start.sh'
+
+# On Android Termux
+if [[ "$(uname -s)" == "Linux" && -f /system/build.prop ]]; then
+  myhome="/storage/emulated/0"
+fi
