@@ -133,6 +133,13 @@ echo "-------------------------------------------"
 #################################################
 # starship
 # ###############################################
+
+if [[ "$(uname -s)" == "Linux" && -f /system/build.prop ]]; then
+  pkg install starship
+else
+  curl -sS https://starship.rs/install.sh | sh
+fi
+
 stow_module "starship"
 
 
