@@ -76,6 +76,7 @@ install_ohmyzsh() {
   fi
 }
 
+
 # 安装 Powerlevel10k 主题
 install_p10k() {
   if [ ! -d "$HOME/.oh-my-zsh/themes/powerlevel10k" ]; then
@@ -118,7 +119,7 @@ install_ohmyzsh
 rm ~/.zshrc
 stow_module "zsh"
 install_zsh_plugins
-install_p10k
+# install_p10k
 
 # 确保 zsh 是默认 shell
 if [ "$SHELL" != "$(command -v zsh)" ]; then
@@ -127,6 +128,12 @@ if [ "$SHELL" != "$(command -v zsh)" ]; then
 fi
 
 echo "-------------------------------------------"
+
+
+#################################################
+# starship
+# ###############################################
+stow_module "starship"
 
 
 
