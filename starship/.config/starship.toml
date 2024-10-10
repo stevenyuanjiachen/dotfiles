@@ -18,7 +18,7 @@ $php\
 $java\
 $kotlin\
 $haskell\
-$python\
+$conda\
 [](fg:teal bg:blue)\
 $docker_context\
 [](fg:blue bg:purple)\
@@ -74,7 +74,7 @@ style = "bg:surface0 fg:text"
 
 [os.symbols]
 Windows = "󰍲"
-Ubuntu = "󰕈"
+Ubuntu = ""
 SUSE = ""
 Raspbian = "󰐿"
 Mint = "󰣭"
@@ -165,6 +165,11 @@ format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
 symbol = ""
 style = "bg:teal"
 format = '[[ $symbol( $version) ](fg:base bg:teal)]($style)'
+
+[conda]
+symbol = ""
+style = "bg:teal"
+format = '[[ $symbol( $environment) ](fg:base bg:teal)]($style)'
 
 [docker_context]
 symbol = ""
