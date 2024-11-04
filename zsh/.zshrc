@@ -111,6 +111,7 @@ fi
 
 # myPATH
 export PATH="$HOME/tools/anaconda3/bin:$PATH"
+export PATH="/usr/local/cuda/bin:$PATH"
 
 # autojump
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh

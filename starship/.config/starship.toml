@@ -4,12 +4,12 @@ format = """
 [](surface0)\
 $os\
 $username\
-[](bg:peach fg:surface0)\
+[](bg:pink fg:surface0)\
 $directory\
-[](fg:peach bg:green)\
+[](fg:pink bg:lavender)\
 $git_branch\
 $git_status\
-[](fg:green bg:teal)\
+[](fg:lavender bg:teal)\
 $c\
 $rust\
 $golang\
@@ -19,11 +19,9 @@ $java\
 $kotlin\
 $haskell\
 $conda\
-[](fg:teal bg:blue)\
-$docker_context\
-[](fg:blue bg:purple)\
+[](fg:teal bg:tea_green)\
 $time\
-[ ](fg:purple)\
+[ ](fg:tea_green)\
 $line_break$character"""
 
 palette = 'catppuccin_mocha'
@@ -41,21 +39,26 @@ color_red = '#cc241d'
 color_yellow = '#d79921'
 
 [palettes.catppuccin_mocha]
+battleship_gray = "#989788"
+english_violet = "#51344D"
+white = "#FFFFFF"
 rosewater = "#f5e0dc"
 flamingo = "#f2cdcd"
-pink = "#f5c2e7"
+pink = "#F5BDE6"
 orange = "#cba6f7"
 red = "#f38ba8"
 maroon = "#eba0ac"
 peach = "#fab387"
 yellow = "#f9e2af"
 green = "#a6e3a1"
-teal = "#94e2d5"
+mint_green = "#C5F4E0"
+tea_green = "#C2EABA"
+teal = "#C5F4E0"
 sky = "#89dceb"
 sapphire = "#74c7ec"
-blue = "#89b4fa"
-lavender = "#b4befe"
-text = "#cdd6f4"
+blue = "#8AADF4"
+lavender = "#B7BDF8"
+text = "#494D64"
 subtext1 = "#bac2de"
 subtext0 = "#a6adc8"
 overlay2 = "#9399b2"
@@ -63,17 +66,17 @@ overlay1 = "#7f849c"
 overlay0 = "#6c7086"
 surface2 = "#585b70"
 surface1 = "#45475a"
-surface0 = "#313244"
+surface0 = "#8AADF4"
 base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
 
 [os]
 disabled = false
-style = "bg:surface0 fg:text"
+style = "bg:surface0 fg:white"
 
 [os.symbols]
-Windows = "󰍲"
+Windows = ""
 Ubuntu = ""
 SUSE = ""
 Raspbian = "󰐿"
@@ -100,7 +103,7 @@ style_root = "bg:surface0 fg:text"
 format = '[ $user ]($style)'
 
 [directory]
-style = "fg:mantle bg:peach"
+style = "bg:pink fg:text"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -115,11 +118,11 @@ truncation_symbol = "…/"
 [git_branch]
 symbol = ""
 style = "bg:teal"
-format = '[[ $symbol $branch ](fg:base bg:green)]($style)'
+format = '[[ $symbol $branch ](fg:text bg:lavender)]($style)'
 
 [git_status]
 style = "bg:teal"
-format = '[[($all_status$ahead_behind )](fg:base bg:green)]($style)'
+format = '[[($all_status$ahead_behind )](fg:text bg:lavender)]($style)'
 
 [nodejs]
 symbol = ""
@@ -179,8 +182,8 @@ format = '[[ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
 [time]
 disabled = false
 time_format = "%R"
-style = "bg:peach"
-format = '[[  $time ](fg:mantle bg:purple)]($style)'
+style = "bg:tea_green"
+format = '[[  $time ](fg:text bg:tea_green)]($style)'
 
 [line_break]
 disabled = false
