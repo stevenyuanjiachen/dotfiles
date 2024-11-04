@@ -18,12 +18,11 @@ My personal configuration files. They are designed for a ZSH + TMUX + NEOVIM sta
     - oh-my-zsh - ZSH framework
     - zsh-syntax-highlighting
     - zsh-auto-suggestion
-    - [powerlevel10k](https://github.com/romkatv/powerlevel10k) - ZSH prompt
+    - starship
     - install neovim
     - link dotfiles using `stow`
 
-Still waiting for accomplish...
-
-- nvim's Autocompletion & Snippets
-
-- termux not beginning ƪ(˘⌣˘)ʃ
+To setup the enviroment in the new computer, run
+``` zsh
+./setup.sh
+```
