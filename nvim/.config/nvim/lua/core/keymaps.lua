@@ -28,3 +28,6 @@ vim.api.nvim_set_keymap('n', '<C-S-v>', '<C-V>', { noremap = true, silent = true
 -- telescope
 -- vim.keymap.set('n', '<C-p>', builtin.find_files, {})
 -- vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+
+-- neo-tree
+-- H -- show/hide dotfile

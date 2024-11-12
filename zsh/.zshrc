@@ -83,7 +83,7 @@ plugins=(
     git
     copypath
     copybuffer
-    zsh-vi-mode
+#    zsh-vi-mode
     zsh-autosuggestions
     zsh-syntax-highlighting
 )
