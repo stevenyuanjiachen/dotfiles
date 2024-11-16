@@ -223,13 +223,22 @@ echo "-------------------------------------------"
 #################################################
 
 # 链接 Tmux 配置
+rm -rf $HOME/.tmux
+rm $HOME/.tmux.conf
 stow_module "tmux"
-rm -rf "$HOME/.tmux"
-mkdir -p "$HOME/.tmux/plugins"
+
+rm -rf $HOME/.tmux/plugins/tpm
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 
 echo "-------------------------------------------"
 
+
+################################################
+# gdb
+################################################
+
+stow_module "gdb"
+pip install pygments
 
 
 # 结束
