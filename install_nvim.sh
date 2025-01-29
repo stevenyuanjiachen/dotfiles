@@ -13,7 +13,7 @@ install_dependency() {
     fi
 }
 
-install_dependency gettext
+sudo apt install -y gettext
 install_dependency ripgrep
 install_dependency npm
 install_dependency unzip
@@ -23,6 +23,7 @@ NEOVIM_VERSION="v0.10.1"  # 你可以根据需要修改版本号
 
 # 下载 Neovim 源代码
 echo "Downloading Neovim..."
+rm -rf ~/tmp
 git clone --recurse-submodules https://github.com/neovim/neovim.git ~/tmp/neovim
 cd ~/tmp/neovim
 
@@ -31,7 +32,7 @@ git checkout $NEOVIM_VERSION
 
 # 编译和安装 Neovim
 echo "Building and installing Neovim..."
-make CMAKE_BUILD_TYPE=Release
+make -j$(nproc) CMAKE_BUILD_TYPE=Release
 sudo make install
 
 # 清理临时目录
