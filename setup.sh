@@ -10,7 +10,9 @@ cd "$DOTFILES_DIR"
 
 # 解析参数
 AUTO_INSTALL=false
+RE_INSTALL=false
 [[ "$1" == "-a" ]] && AUTO_INSTALL=true
+[[ "$1" == "-r" ]] && RE_INSTALL=true
 
 # 询问是否安装（如果未启用 -a）
 ask_install() {
@@ -19,7 +21,7 @@ ask_install() {
     local package="$1"
 
     # 如果已安装，直接跳过
-    if command -v "$package" &> /dev/null; then
+    if command -v "$package" &> /dev/null && ! RE_INSTALL ; then
         echo -e "\n\033[1;32m✅ $package 已安装，跳过...\033[0m"
         return 1
     fi
