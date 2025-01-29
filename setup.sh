@@ -16,7 +16,7 @@ RE_INSTALL=false
 
 # 询问是否安装（如果未启用 -a）
 ask_install() {
-    sleep 3
+    sleep 2
     clear
     local package="$1"
 
@@ -48,7 +48,7 @@ chmod +x ./install_tools.sh && ./install_tools.sh
 ask_install "stow" && sudo apt update && sudo apt install -y stow
 
 # shell
-sleep 3
+sleep 2
 clear
 if command -v zsh > /dev/null && ! $RE_INSTALL ; then
     echo -e "\033[1;32m✅ zsh 已安装，跳过...\033[0m"
@@ -107,7 +107,8 @@ else
 fi
 
 # Starship
-ask_install "starship" && curl -sS https://starship.rs/install.sh | sh -s -- -y && stow_module "starship"
+ask_install "starship" && curl -sS https://starship.rs/install.sh | sh -s -- -y 
+stow_module "starship"
 
 # Autojump
 ask_install "autojump" && sudo apt install -y autojump
@@ -125,10 +126,10 @@ fi
 # Tmux
 if ask_install "tmux"; then
     rm -rf "$HOME/.tmux" "$HOME/.tmux.conf"
-    stow_module "tmux"
     git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 fi
+stow_module "tmux"
 
-sleep 3
+sleep 2
 clear
 echo -e "\033[1;32m✅ Dotfiles 配置完成！\033[0m"
