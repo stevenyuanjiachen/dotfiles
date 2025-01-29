@@ -11,9 +11,6 @@ alias chae='code . && exit'
 # CMake
 alias cbuild='cmake -B build && cmake --build build'
 
-# SSH
-myserver='stserver@49.235.111.34'
-
 # clash
 alias clash_on='sudo bash ~/tools/clash-for-linux/start.sh'
 

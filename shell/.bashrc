@@ -96,15 +96,6 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -114,4 +105,40 @@ if ! shopt -oq posix; then
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
+fi
+
+# User config
+# starship
+eval "$(starship init bash)"
+
+# source dotfiles
+[[ -f ~/.aliases ]] && source ~/.aliases
+[[ -f ~/.path ]] && source ~/.path
+
+# autojump
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
+autoload -U compinit && compinit -u
+
+# conda
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+if command -v conda &> /dev/null; then
+    __conda_setup="$("$home/tools/anaconda3/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "$HOME/tools/anaconda3/etc/profile.d/conda.sh" ]; then
+            . "$HOME/tools/anaconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="$HOME/tools/anaconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
+fi
+
+# ssh
+if [[ "$USER" != "stserver" ]]; then
+  eval "$(ssh-agent -s)"
+  ssh-add ~/.ssh/id_ed25519
 fi

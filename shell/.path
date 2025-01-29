@@ -4,7 +4,3 @@ export PATH="/usr/local/cuda/bin:$PATH"
 
 # color sets of the ls
 export LS_COLORS='ow=01;30;42'
-
-# Robot SIG
-export LD_LIBRARY_PATH="$HOME/tools/jaka-sdk/sdk-v2.2.2/lib"
-export PATH="$PATH:$HOME/tools/jaka-sdk/sdk-v2.2.2/lib"
