@@ -123,9 +123,3 @@ if command -v conda &> /dev/null; then
     unset __conda_setup
     # <<< conda initialize <<<
 fi
-
-# ssh
-if [[ "$USER" != "stserver" ]]; then
-  eval "$(ssh-agent -s)"
-  ssh-add ~/.ssh/id_ed25519
-fi
