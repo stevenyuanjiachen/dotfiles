@@ -40,8 +40,8 @@ stow_module() {
   stow -d "$DOTFILES_DIR" -t "$HOME" "$1"
 }
 
-# 安装依赖
-chmod +x ./install_dependencies.sh && ./install_dependencies.sh
+# 安装工具集
+chmod +x ./install_tools.sh && ./install_tools.sh
 sudo apt update && sudo apt install -y stow
 
 # shell
