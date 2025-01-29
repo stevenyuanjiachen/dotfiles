@@ -41,24 +41,64 @@ stow_module() {
 }
 
 # 安装依赖
-ask_install "依赖" && chmod +x ./install_dependencies.sh && ./install_dependencies.sh
-ask_install "stow" && sudo apt update && sudo apt install -y stow
+chmod +x ./install_dependencies.sh && ./install_dependencies.sh
+sudo apt update && sudo apt install -y stow
 
-# Zsh & 插件
-if ask_install "zsh"; then
-  sudo apt install -y zsh
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-
-  ZSH_CUSTOM="$HOME/.oh-my-zsh/custom/plugins"
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/zsh-syntax-highlighting"
-  git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/zsh-autosuggestions"
-  git clone https://github.com/jeffreytse/zsh-vi-mode.git "$ZSH_CUSTOM/zsh-vi-mode"
-
+# shell
+clear
+if command -v zsh > /dev/null; then
+  echo -e "\n\033[1;32m✅ zsh 已安装，跳过...\033[0m"
   rm -f ~/.zshrc
-  stow_module "zsh"
-  sudo chsh -s "$(command -v zsh)" "$USER"
-fi
+  rm -f ~/.bashrc
+  stow_module "shell"
+else
+  echo -e "\n\033[1;36m🔹 正在安装 shell, 请选择要进行的操作\033[0m"
+  echo "[1] 安装 zsh 并设为默认终端"
+  echo "[2] 安装 zsh 但依然使用 bash"
+  echo "[3] 不安装 zsh"
+  echo "[else] 跳过"
 
+  read -r shell_choice
+  case $shell_choice in
+    1)
+      sudo apt install -y zsh
+      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
+      ZSH_CUSTOM="$HOME/.oh-my-zsh/custom/plugins"
+      git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/zsh-syntax-highlighting"
+      git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/zsh-autosuggestions"
+      git clone https://github.com/jeffreytse/zsh-vi-mode.git "$ZSH_CUSTOM/zsh-vi-mode"
+
+      rm -f ~/.zshrc
+      rm -f ~/.bashrc
+      stow_module "shell"
+      sudo chsh -s "$(command -v zsh)" "$USER"
+      ;;
+    2)
+      sudo apt install -y zsh
+      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
+      ZSH_CUSTOM="$HOME/.oh-my-zsh/custom/plugins"
+      git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/zsh-syntax-highlighting"
+      git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/zsh-autosuggestions"
+      git clone https://github.com/jeffreytse/zsh-vi-mode.git "$ZSH_CUSTOM/zsh-vi-mode"
+
+      rm -f ~/.zshrc
+      rm -f ~/.bashrc
+      stow_module "shell"
+      echo "已安装 zsh，但继续使用 bash 作为默认终端。"
+      ;;
+    3)
+      echo "不安装 zsh。"
+      rm -f ~/.zshrc
+      rm -f ~/.bashrc
+      stow_module "shell"
+      ;;
+    *)
+      echo "跳过"
+      ;;
+  esac
+fi
 # Starship
 ask_install "starship" && curl -sS https://starship.rs/install.sh | sh -s -- -y && stow_module "starship"
 
@@ -82,8 +122,5 @@ if ask_install "tmux"; then
   stow_module "tmux"
   git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 fi
-
-# GDB 额外安装依赖
-pip install --user pygments
 
 echo -e "\n\033[1;32m✅ Dotfiles 配置完成！\033[0m"
