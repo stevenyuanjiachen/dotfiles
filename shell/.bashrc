@@ -114,6 +114,7 @@ eval "$(starship init bash)"
 # source dotfiles
 [[ -f ~/.aliases ]] && source ~/.aliases
 [[ -f ~/.path ]] && source ~/.path
+[[ -f ~/.unique_config ]] && source ~/.unique_config
 
 # autojump
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
