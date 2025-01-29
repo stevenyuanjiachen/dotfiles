@@ -42,7 +42,7 @@ stow_module() {
 
 # 安装工具集
 chmod +x ./install_tools.sh && ./install_tools.sh
-sudo apt update && sudo apt install -y stow
+ask_install "stow" && sudo apt update && sudo apt install -y stow
 
 # shell
 clear
@@ -99,16 +99,16 @@ else
       ;;
   esac
 fi
+
 # Starship
 ask_install "starship" && curl -sS https://starship.rs/install.sh | sh -s -- -y && stow_module "starship"
 
 # Autojump
 ask_install "autojump" && sudo apt install -y autojump
 
-# Git、Vim、GDB 配置（仅 Stow）
+# Git、Vim 配置
 stow_module "git"
 stow_module "vim"
-stow_module "gdb"
 
 # Neovim
 if ask_install "nvim"; then
@@ -123,4 +123,5 @@ if ask_install "tmux"; then
   git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 fi
 
+clear
 echo -e "\n\033[1;32m✅ Dotfiles 配置完成！\033[0m"

@@ -1,6 +1,0 @@
-dashboard -style syntax_highlighting 'nord'
-
-set breakpoint pending on
-set confirm off
-
-dashboard -layout assembly !source !variables !stack registers memory
