@@ -105,39 +105,38 @@ fi
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+# my aliases
 if [[ -f ~/.aliases ]]; then
   source ~/.aliases
 fi
 
-# myPATH
-# export PATH="$HOME/tools/anaconda3/bin:$PATH"
-export PATH="/usr/local/cuda/bin:$PATH"
+# my path
+if [[ -f ~/.path ]]; then
+    source ~/.path
+fi
 
 # autojump
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
 
-# color sets of the ls
-export LS_COLORS='ow=01;30;42'
-
 
 # conda
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-# if command -v conda &> /dev/null; then
-#  __conda_setup="$("$HOME/tools/anaconda3/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
-#  if [ $? -eq 0 ]; then
-#    eval "$__conda_setup"
-#  else
-#    if [ -f "$HOME/tools/anaconda3/etc/profile.d/conda.sh" ]; then
-#      . "$HOME/tools/anaconda3/etc/profile.d/conda.sh"
-#    else
-#      export PATH="$HOME/tools/anaconda3/bin:$PATH"
-#    fi
-#  fi
-#  unset __conda_setup
-#  # <<< conda initialize <<<
-# fi
+if command -v conda &> /dev/null; then
+    __conda_setup="$("$home/tools/anaconda3/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "$HOME/tools/anaconda3/etc/profile.d/conda.sh" ]; then
+            . "$HOME/tools/anaconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="$HOME/tools/anaconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+    # <<< conda initialize <<<
+fi
 
 # ssh
 if [[ "$USER" != "stserver" ]]; then
