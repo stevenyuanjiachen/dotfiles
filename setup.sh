@@ -23,18 +23,20 @@ ask_install() {
     return 1
   fi
 
+  # 如果有 -a 则不询问
   if $AUTO_INSTALL; then
     echo -e "\n\033[1;36m🔹 正在安装 $package...\033[0m"
     return 0
   fi
 
+  # 询问是否安装该模块
   read -p "👉 是否安装 $package? (y/N) " choice
   [[ "$choice" == [Yy] ]] && echo -e "\n\033[1;36m🔹 正在安装 $package...\033[0m" && return 0
   return 1
 }
 
 # Stow 配置文件
-install_stow_module() {
+stow_module() {
   stow -d "$DOTFILES_DIR" -t "$HOME" "$1"
 }
 
@@ -53,31 +55,31 @@ if ask_install "zsh"; then
   git clone https://github.com/jeffreytse/zsh-vi-mode.git "$ZSH_CUSTOM/zsh-vi-mode"
 
   rm -f ~/.zshrc
-  install_stow_module "zsh"
+  stow_module "zsh"
   sudo chsh -s "$(command -v zsh)" "$USER"
 fi
 
 # Starship
-ask_install "starship" && curl -sS https://starship.rs/install.sh | sh -s -- -y && install_stow_module "starship"
+ask_install "starship" && curl -sS https://starship.rs/install.sh | sh -s -- -y && stow_module "starship"
 
 # Autojump
 ask_install "autojump" && sudo apt install -y autojump
 
 # Git、Vim、GDB 配置（仅 Stow）
-install_stow_module "git"
-install_stow_module "vim"
-install_stow_module "gdb"
+stow_module "git"
+stow_module "vim"
+stow_module "gdb"
 
 # Neovim
 if ask_install "nvim"; then
   chmod +x ./install_nvim.sh && ./install_nvim.sh
-  install_stow_module "nvim"
+  stow_module "nvim"
 fi
 
 # Tmux
 if ask_install "tmux"; then
   rm -rf "$HOME/.tmux" "$HOME/.tmux.conf"
-  install_stow_module "tmux"
+  stow_module "tmux"
   git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 fi
 

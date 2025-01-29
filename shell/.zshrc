@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -83,7 +76,7 @@ plugins=(
     git
     copypath
     copybuffer
-#    zsh-vi-mode
+    zsh-vi-mode
     zsh-autosuggestions
     zsh-syntax-highlighting
 )
@@ -105,20 +98,13 @@ fi
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# my aliases
-if [[ -f ~/.aliases ]]; then
-  source ~/.aliases
-fi
-
-# my path
-if [[ -f ~/.path ]]; then
-    source ~/.path
-fi
+# source dotfiles
+[[ -f ~/.aliases ]] && source ~/.aliases
+[[ -f ~/.path ]] && source ~/.path
 
 # autojump
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
-
 
 # conda
 # >>> conda initialize >>>
