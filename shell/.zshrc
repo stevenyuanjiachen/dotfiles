@@ -80,7 +80,7 @@ plugins=(
     zsh-syntax-highlighting
 )
 if [[ ! -n $TERMUX_VERSION ]]; then                                                                                                                                                                                               
-    plugins += (zsh-vi-mode)
+    plugins+=(zsh-vi-mode)
 fi
 
 source $ZSH/oh-my-zsh.sh
