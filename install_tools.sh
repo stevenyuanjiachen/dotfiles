@@ -84,7 +84,11 @@ install_conda(){
 }
 
 # 主执行流程
+mkdir $TMP_DIR
+
 install_build_essential
 install_python
 install_cmake
 install_conda
+
+rm -rf $TMP_DIR
