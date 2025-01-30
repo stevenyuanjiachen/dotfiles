@@ -84,7 +84,7 @@ install_conda(){
 }
 
 # 主执行流程
-mkdir $TMP_DIR
+mkdir -p $TMP_DIR
 
 install_build_essential
 install_python
