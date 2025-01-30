@@ -76,10 +76,12 @@ plugins=(
     git
     copypath
     copybuffer
-    zsh-vi-mode
     zsh-autosuggestions
     zsh-syntax-highlighting
 )
+if [[ ! -n $TERMUX_VERSION ]]; then                                                                                                                                                                                               
+    plugins += (zsh-vi-mode)
+fi
 
 source $ZSH/oh-my-zsh.sh
 
