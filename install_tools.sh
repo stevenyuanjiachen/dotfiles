@@ -137,6 +137,7 @@ install_vscode_cpptools() {
     wget -O "$VSIX_FILE" "$DOWNLOAD_URL"    # 下载 vscode-cpptools 扩展包
     unzip -o "$VSIX_FILE" -d "vscode-cpptools"  # 解压到 vscode-cpptools 文件夹
     rm "$VSIX_FILE"                         # 清理安装包
+    chmod +x "$EXT_DIR/extension/debugAdapters/bin/OpenDebugAD7"
 
     echo -e "\033[1;32m✅ vscode-cpptools 安装完成！\033[0m"
 }
