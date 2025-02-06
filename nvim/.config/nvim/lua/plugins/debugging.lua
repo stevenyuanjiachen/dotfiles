@@ -40,23 +40,28 @@ return {
                 name = "Launch file",
                 type = "cppdbg",
                 request = "launch",
+
                 program = function()
-                    return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+                    -- 获取当前文件的路径
+                    local current_file = vim.fn.expand('%:p')  -- 当前文件的绝对路径
+                    local output_file = vim.fn.fnamemodify(current_file, ':r') .. '.out'  -- 编译后生成的可执行文件路径（去掉 .cpp 后缀并加上 .out）
+
+                    -- 编译命令
+                    local compile_command = string.format("g++ -g -o %s %s", output_file, current_file)
+                    vim.fn.system(compile_command)  -- 编译当前文件
+
+                    return output_file  -- 返回生成的可执行文件路径供调试使用
                 end,
+
                 cwd = "${workspaceFolder}",
                 stopAtEntry = true,
-            },
-            {
-                name = "Attach to gdbserver :1234",
-                type = "cppdbg",
-                request = "launch",
-                MIMode = "gdb",
-                miDebuggerServerAddress = "localhost:1234",
-                miDebuggerPath = "/usr/bin/gdb",
-                cwd = "${workspaceFolder}",
-                program = function()
-                    return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-                end,
+                setupCommands = {
+                    {
+                        text = "-enable-pretty-printing",
+                        description = "Enable pretty printing",
+                        ignoreFailures = false,
+                    },
+                },
             },
         }
     end,
