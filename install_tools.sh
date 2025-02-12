@@ -8,7 +8,7 @@ install_build_essential() {
     sleep 2
     clear
     echo -e "\033[1;36m🔹 正在安装 build_essential ...\033[0m"
-    sudo apt install -y build-essential openssl
+    sudo apt install -y build-essential libssl-dev
 }
 
 # 安装 Python 3
