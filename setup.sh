@@ -130,6 +130,11 @@ if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
     mkdir -p "$HOME/.tmux/plugins"
     git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 fi
+if [ ! -d "$HOME/.tmux/plugins/catppuccin" ]; then
+    echo -e "\033[1;36m🔹 正在安装 tmux catppuccin 主题 tpm\033[0m"
+    mkdir -p "$HOME/.tmux/plugins/catppuccin"
+    git clone -b v2.1.2 https://github.com/catppuccin/tmux.git ~/.tmux/plugins/catppuccin/tmux
+fi
 stow_module "tmux"
 
 sleep 2
