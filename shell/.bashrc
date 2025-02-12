@@ -116,10 +116,6 @@ eval "$(starship init bash)"
 [[ -f ~/.path ]] && source ~/.path
 [[ -f ~/.unique_config ]] && source ~/.unique_config
 
-# autojump
-[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
-autoload -U compinit && compinit -u
-
 # conda
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
