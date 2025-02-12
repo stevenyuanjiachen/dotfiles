@@ -124,8 +124,10 @@ if ask_install "nvim"; then
 fi
 
 # Tmux
-if ask_install "tmux"; then
-    rm -rf "$HOME/.tmux" "$HOME/.tmux.conf"
+ask_install "tmux" && sudo apt install tmux
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+    echo -e "\033[1;36m🔹 正在安装 tmux 插件管理器 tpm\033[0m"
+    mkdir -p "$HOME/.tmux/plugins"
     git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 fi
 stow_module "tmux"
