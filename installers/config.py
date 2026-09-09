@@ -87,7 +87,7 @@ neovim_arch = arch
 neovim_arch = "x86_64" if neovim_arch in ["x86_64", "amd64"] else neovim_arch
 neovim_arch = "arm64" if neovim_arch in ["aarch64", "arm64"] else neovim_arch
 neovim_release = f"nvim-linux-{neovim_arch}.appimage"
-neovim_url = f"https://github.com/neovim/neovim/releases/download/v0.11.5/nvim-linux-{neovim_arch}.appimage"
+neovim_url = f"https://github.com/neovim/neovim/releases/download/stable/{neovim_release}"
 neovim_appimage_dir = Path("/opt/nvim")
 neovim_bin_dir = Path("/usr/local/bin/")
 
