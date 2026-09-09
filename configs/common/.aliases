@@ -8,7 +8,7 @@ alias egrep='egrep --color=auto'
 
 # eza
 if command -v eza >/dev/null 2>&1; then
-  alias ls='eza --icons'
+  alias ls='eza --icons=auto'
   alias tree='ls -T'
 fi
 
